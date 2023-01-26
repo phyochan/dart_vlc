@@ -23,6 +23,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:dart_vlc_ffi/src/device.dart';
 import 'package:dart_vlc_ffi/src/player.dart';
 import 'package:dart_vlc_ffi/src/player_state/player_state.dart';
+import 'package:window_manager/window_manager.dart';
 
 class Control extends StatefulWidget {
   Control({
@@ -199,6 +200,21 @@ class ControlState extends State<Control> with SingleTickerProviderStateMixin {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              
+                              IconButton(
+                                  color: Colors.white,
+                                  iconSize: 30,
+                                  icon: Icon(Icons.arrow_back),
+                                  onPressed: () async {
+                                    await windowManager.setTitleBarStyle(TitleBarStyle.normal);
+                                    await windowManager.setFullScreen(false);
+                                    await windowManager.show();
+                                    Navigator.pop(context);
+
+                                    }
+                              ),
+
+                              
                               if ((snapshot.data?.medias.length ?? 0) > 1)
                                 IconButton(
                                   color: Colors.white,
