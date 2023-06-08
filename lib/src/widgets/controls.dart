@@ -277,6 +277,37 @@ class ControlState extends State<Control> with SingleTickerProviderStateMixin {
                                       setState(() {});
                                     }
                                   }),
+                              
+                               SizedBox(width: 40),
+                              IconButton(
+                                            onPressed: () {
+                                              if (isFullScreen) {
+                                                windowManager.setTitleBarStyle(
+                                                    TitleBarStyle.normal);
+                                                windowManager
+                                                    .setFullScreen(false);
+                                                windowManager.show();
+
+                                                isFullScreen = false;
+                                              } else {
+                                                windowManager
+                                                    .setFullScreen(true);
+                                                windowManager.show();
+
+                                                isFullScreen = true;
+                                              }
+                                            },
+                                            icon: isFullScreen
+                                                ? const Icon(
+                                                    Icons.fullscreen,
+                                                    size: 35,
+                                                    color: Colors.white,
+                                                  )
+                                                : const Icon(
+                                                    Icons.fullscreen_exit,
+                                                    size: 35,
+                                                    color: Colors.white,
+                                                  )),
                               SizedBox(width: 50),
                               if ((snapshot.data?.medias.length ?? 0) > 1)
                                 IconButton(
